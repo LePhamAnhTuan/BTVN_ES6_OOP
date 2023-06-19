@@ -16,6 +16,16 @@
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
       crossorigin="anonymous"
     />
+    <!-- FontAwesome 6.2.0 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
 
   <body>
@@ -25,20 +35,45 @@
     <main>
       <!-- Body -->
       <div class="container-lg">
-        <div class="card-body">
+        <div class="card-body mt-3">
           <div class="row mb-3">
-            <div class="col">
+            <div class="col-6 d-flex align-items-center justify-content-center">
+              <div class="themDanhSach">
+                <h1>Thêm Danh Sách</h1>
+                <div id="phanLoaiDanhSach" class="phanLoaiDanhSach">
+                  <button
+                    id="btnHocSinh"
+                    class="btn btn-primary text-white opacity-75"
+                  >
+                    Học Sinh
+                  </button>
+                  <button
+                    id="btnNhanVien"
+                    class="btn btn-danger text-white opacity-75"
+                  >
+                    Nhân Viên
+                  </button>
+                  <button
+                    id="btnKhachHang"
+                    class="btn btn-warning text-white opacity-75"
+                  >
+                    Khách Hàng
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 d-flex align-items-center">
               <div class="input-group">
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Loại nhân viên"
+                  placeholder="Phân Loại"
                   id="searchName"
                 />
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="btnTimNV"
-                    ><i class="fa fa-search"></i
-                  ></span>
+                <div class="btn_timnv">
+                  <button class="btn btn-success" id="btnTimNV">
+                    Tìm Kiếm
+                  </button>
                 </div>
               </div>
             </div>
@@ -53,10 +88,8 @@
                 </th>
                 <th>Họ và tên</th>
                 <th>Email</th>
-                <th>Ngày làm</th>
-                <th>Chức vụ</th>
-                <th>Tổng lương</th>
-                <th>Xếp loại</th>
+                <th>Địa chỉ</th>
+                <th>Thông tin Chi Tiết</th>
                 <th><em class="fa fa-cog"></em></th>
               </tr>
             </thead>
@@ -68,6 +101,242 @@
     <footer>
       <!-- place footer here -->
     </footer>
+
+    <div id="myModalHocSinh" class="modal">
+      <div class="main">
+        <form action="" method="POST" class="form" id="form-1">
+          <button id="btnCloseHocSinh" class="btn_close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3 class="heading">Đăng ký</h3>
+          <p class="desc"></p>
+
+          <div class="spacer"></div>
+
+          <div class="form_group">
+            <label for="maId" class="form-label">Mã ID</label>
+            <input
+              id="maId"
+              name="maId"
+              type="text"
+              placeholder="Mã ID"
+              class="form-control"
+              rules="required"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form_group">
+            <label for="fullName" class="form-label">Tên đầy đủ</label>
+            <input
+              id="fullName"
+              name="fullName"
+              type="text"
+              placeholder="Tên đầy đủ"
+              class="form-control"
+              rules="required|min:6"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form_group">
+            <label for="email" class="form-label">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="text"
+              placeholder="Email"
+              class="form-control"
+              rules="required|email"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form_group">
+            <label for="address" class="form-label">Địa Chỉ</label>
+            <input
+              id="address"
+              name="address"
+              type="text"
+              placeholder="Địa Chỉ"
+              class="form-control"
+              rules="required"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="space">
+            <div class="row">
+              <div class="col-4">
+                <div class="form_group">
+                  <label for="diemToan" class="form-label"> Điểm Toán </label>
+                  <input
+                    id="diemToan"
+                    name="diemToan"
+                    type="te"
+                    placeholder="Điểm Toán"
+                    class="form-control"
+                    rules="required"
+                  />
+                  <span class="form-message"></span>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form_group">
+                  <label for="diemLy" class="form-label"> Điểm Lý </label>
+                  <input
+                    id="diemLy"
+                    name="diemLy"
+                    type="te"
+                    placeholder="Điểm Lý"
+                    class="form-control"
+                    rules="required"
+                  />
+                  <span class="form-message"></span>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form_group">
+                  <label for="diemHoa" class="form-label"> Điểm Hóa </label>
+                  <input
+                    id="diemHoa"
+                    name="diemHoa"
+                    type="te"
+                    placeholder="Điểm Hóa"
+                    class="form-control"
+                    rules="required"
+                  />
+                  <span class="form-message"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-1">
+            <div class="col-6">
+              <button id="thembtnHocSinh" class="form-submit">
+                Thêm Danh Sách
+              </button>
+            </div>
+            <div class="col-6">
+              <button class="form-submit">Cập Nhật</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="myModalNhanVien" class="modal">
+      <div class="main">
+        <form action="" method="POST" class="form" id="form-1">
+          <button id="btnCloseNhanVien" class="btn_close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3 class="heading">Đăng ký</h3>
+          <p class="desc"></p>
+
+          <div class="spacer"></div>
+
+          <div class="form_group">
+            <label for="maId" class="form-label">Mã ID</label>
+            <input
+              id="maId"
+              name="maId"
+              type="text"
+              placeholder="Mã ID"
+              class="form-control"
+              rules="required"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form_group">
+            <label for="fullName" class="form-label">Tên đầy đủ</label>
+            <input
+              id="fullName"
+              name="fullName"
+              type="text"
+              placeholder="Tên đầy đủ"
+              class="form-control"
+              rules="required|min:6"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form_group">
+            <label for="email" class="form-label">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="text"
+              placeholder="Email"
+              class="form-control"
+              rules="required|email"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form_group">
+            <label for="address" class="form-label">Địa Chỉ</label>
+            <input
+              id="address"
+              name="address"
+              type="text"
+              placeholder="Địa Chỉ"
+              class="form-control"
+              rules="required"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="space">
+            <div class="row">
+              <div class="col-6">
+                <div class="form_group">
+                  <label for="ngayLamViec" class="form-label">
+                    Ngày Làm Việc
+                  </label>
+                  <input
+                    id="ngayLamViec"
+                    name="ngayLamViec"
+                    type="te"
+                    placeholder="Ngày Làm Việc"
+                    class="form-control"
+                    rules="required"
+                  />
+                  <span class="form-message"></span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form_group">
+                  <label for="luongTheoNgay" class="form-label">
+                    Lương Theo Ngày
+                  </label>
+                  <input
+                    id="luongTheoNgay"
+                    name="luongTheoNgay"
+                    type="te"
+                    placeholder="Lương Theo Ngày"
+                    class="form-control"
+                    rules="required"
+                  />
+                  <span class="form-message"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-1">
+            <div class="col-6">
+              <button id="thembtnNhanVien" class="form-submit">
+                Thêm Danh Sách
+              </button>
+            </div>
+            <div class="col-6">
+              <button class="form-submit">Cập Nhật</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- Bootstrap JavaScript Libraries -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -80,5 +349,8 @@
       integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
       crossorigin="anonymous"
     ></script>
+    <script src="./js/modal.js"></script>
+    <script src="./js/validate.js"></script>
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>
