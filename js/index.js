@@ -5,7 +5,6 @@ danhSach.layLoacal();
 const buttonContainer = document.getElementById("phanLoaiDanhSach");
 const buttons = buttonContainer.getElementsByTagName("button");
 for (let i = 0; i < buttons.length; i++) {
-  // if(this.innerText)
   buttons[i].addEventListener("click", function () {
     themVaoDanhSach(this.id);
     console.log(this.id);
@@ -16,7 +15,6 @@ function themVaoDanhSach(idBtn) {
     .getElementById(`them${idBtn}`)
     .addEventListener("click", function (event) {
       event.preventDefault();
-
       if (idBtn == "btnHocSinh") {
         let hocSinh = new studen();
         let getElement = document.querySelectorAll(
@@ -44,7 +42,6 @@ function themVaoDanhSach(idBtn) {
         }
         danhSach.themDanhSach(nhanVien);
         danhSach.luuLocal();
-        // danhSach.layLoacal();
         danhSach.renderGiaoDien();
         for (let item of getElement) {
           item.value = "";
@@ -69,6 +66,69 @@ function themVaoDanhSach(idBtn) {
       }
     });
 }
+document
+  .getElementById("btnCapNhatHocSinh")
+  .addEventListener("click", (event) => {
+    event.preventDefault();
+    let hocSinh = new studen();
+    let getElement = document.querySelectorAll(
+      "#form-1 input,#form-1 select, #form-1 textarea"
+    );
+    for (let item of getElement) {
+      let { value, id } = item;
+      hocSinh[id] = value;
+    }
+    danhSach.chinhSuaThongTin(hocSinh);
+    document.getElementById("btnCloseHocSinh").click();
+    document.getElementById("form-1").reset();
+  });
+document
+  .getElementById("btnCapNhatNhanVien")
+  .addEventListener("click", (event) => {
+    event.preventDefault();
+    let nhanVien = new employee();
+    let getElement = document.querySelectorAll(
+      "#form-2 input,#form-2 select, #form-2 textarea"
+    );
+    for (let item of getElement) {
+      let { value, id } = item;
+      nhanVien[id] = value;
+    }
+    danhSach.chinhSuaThongTin(nhanVien);
+    document.getElementById("btnCloseNhanVien").click();
+    document.querySelector("#form-2 input#maId").readOnly = false;
+    document.getElementById("form-2").reset();
+  });
+document
+  .getElementById("btnCapNhatKhachHang")
+  .addEventListener("click", (event) => {
+    event.preventDefault();
+    let khachHang = new customer();
+    let getElement = document.querySelectorAll(
+      "#form-2 input,#form-2 select, #form-2 textarea"
+    );
+    for (let item of getElement) {
+      let { value, id } = item;
+      khachHang[id] = value;
+    }
+    danhSach.chinhSuaThongTin(khachHang);
+    document.getElementById("btnCloseKhachHang").click();
+    document.getElementById("form-3").reset();
+  });
+
 window.xoaDanhSach = (maId) => {
   danhSach.xoaDanhSach(maId);
+};
+window.layThongTin = (maId) => {
+  danhSach.layThongTin(maId);
+};
+window.timKiemThongTin = (event) => {
+  let value = event.target.value;
+  if (value) {
+    danhSach.timKiemThongTin(value);
+  } else if (value == "") {
+    danhSach.layLoacal();
+  }
+
+  console.log("value: ", value);
 };

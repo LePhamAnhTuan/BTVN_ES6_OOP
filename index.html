@@ -69,6 +69,7 @@
                   class="form-control"
                   placeholder="Phân Loại"
                   id="searchName"
+                  oninput="timKiemThongTin(event)"
                 />
                 <div class="btn_timnv">
                   <button class="btn btn-success" id="btnTimNV">
@@ -121,7 +122,7 @@
               type="text"
               placeholder="Mã ID"
               class="form-control"
-              rules="required"
+              rules="required|min:6"
             />
             <span class="form-message"></span>
           </div>
@@ -176,7 +177,7 @@
                     type="te"
                     placeholder="Điểm Toán"
                     class="form-control"
-                    rules="required"
+                    rules="required|numberCoures"
                   />
                   <span class="form-message"></span>
                 </div>
@@ -190,7 +191,7 @@
                     type="te"
                     placeholder="Điểm Lý"
                     class="form-control"
-                    rules="required"
+                    rules="required|numberCoures"
                   />
                   <span class="form-message"></span>
                 </div>
@@ -204,7 +205,7 @@
                     type="te"
                     placeholder="Điểm Hóa"
                     class="form-control"
-                    rules="required"
+                    rules="required|numberCoures"
                   />
                   <span class="form-message"></span>
                 </div>
@@ -218,7 +219,9 @@
               </button>
             </div>
             <div class="col-6">
-              <button class="form-submit">Cập Nhật</button>
+              <button id="btnCapNhatHocSinh" class="form-submit">
+                Cập Nhật
+              </button>
             </div>
           </div>
         </form>
@@ -243,7 +246,7 @@
               type="text"
               placeholder="Mã ID"
               class="form-control"
-              rules="required"
+              rules="required|min:6"
             />
             <span class="form-message"></span>
           </div>
@@ -256,7 +259,7 @@
               type="text"
               placeholder="Tên đầy đủ"
               class="form-control"
-              rules="required|min:6"
+              rules="required"
             />
             <span class="form-message"></span>
           </div>
@@ -300,7 +303,7 @@
                     type="te"
                     placeholder="Ngày Làm Việc"
                     class="form-control"
-                    rules="required"
+                    rules="required|onlyNumber"
                   />
                   <span class="form-message"></span>
                 </div>
@@ -316,7 +319,7 @@
                     type="te"
                     placeholder="Lương Theo Ngày"
                     class="form-control"
-                    rules="required"
+                    rules="required|onlyNumber"
                   />
                   <span class="form-message"></span>
                 </div>
@@ -330,7 +333,9 @@
               </button>
             </div>
             <div class="col-6">
-              <button class="form-submit">Cập Nhật</button>
+              <button id="btnCapNhatNhanVien" class="form-submit">
+                Cập Nhật
+              </button>
             </div>
           </div>
         </form>
@@ -454,7 +459,9 @@
               </button>
             </div>
             <div class="col-6">
-              <button class="form-submit">Cập Nhật</button>
+              <button id="btnCapNhatKhachHang" class="form-submit">
+                Cập Nhật
+              </button>
             </div>
           </div>
         </form>

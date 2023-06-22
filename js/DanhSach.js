@@ -1,5 +1,5 @@
 import { person, studen, employee, customer } from "../js/PhanLoaiDanhSach.js";
-
+import removeVietnameseTones from "./helper.js";
 export default class DanhSach {
   constructor() {
     this.DanhSach = [];
@@ -12,7 +12,6 @@ export default class DanhSach {
       if (value.diemToan) {
         let hocSinh = new studen();
         Object.assign(hocSinh, value);
-
         let {
           fullName,
           address,
@@ -44,7 +43,7 @@ export default class DanhSach {
         }</td>
         <td>
                 <button id="xoaDanhSach" onclick="xoaDanhSach('${maId}')" class="btn btn-success text-white opacity-75">Xóa</button>
-                <button onclick="xoaDanhSach()" class="btn btn-danger text-white opacity-75">Sửa</button>
+                <button onclick="layThongTin('${maId}')" class="btn btn-danger text-white opacity-75">Sửa</button>
                 </td>
                 
             </tr> 
@@ -83,7 +82,7 @@ export default class DanhSach {
         </td>
         <td>
                 <button id="xoaDanhSach" onclick="xoaDanhSach('${maId}')" class="btn btn-success text-white opacity-75">Xóa</button>
-                <button onclick="xoaDanhSach()" class="btn btn-danger text-white opacity-75">Sửa</button>
+                <button onclick="layThongTin('${maId}')" class="btn btn-danger text-white opacity-75">Sửa</button>
                 </td>
                 
             </tr> 
@@ -131,17 +130,81 @@ export default class DanhSach {
   }
   layLoacal() {
     let getLocal = JSON.parse(localStorage.getItem("arrDanhSach"));
-    this.DanhSach = getLocal;
-    this.renderGiaoDien();
+
+    if (getLocal) {
+      this.DanhSach = getLocal;
+      this.renderGiaoDien();
+    }
   }
   xoaDanhSach(id) {
     let index = this.DanhSach.findIndex((item) => item.maId == id);
-    console.log("index: ", index);
     if (index != -1) {
       this.DanhSach.splice(index, 1);
       this.renderGiaoDien();
       this.luuLocal();
     }
   }
-  layThongTin(id) {}
+  layThongTin(maId) {
+    let item = this.DanhSach.find((value) => value.maId == maId);
+    if (item.diemToan) {
+      document.getElementById("btnHocSinh").click();
+      document.getElementById("thembtnHocSinh").style.display = "none";
+      document.querySelector("#form-1 input#maId").readOnly = true;
+
+      let getElement = document.querySelectorAll(
+        "#form-1 input,#form-1 select, #form-1 textarea"
+      );
+      for (let input of getElement) {
+        let { id } = input;
+        input.value = item[id];
+      }
+    } else if (item.ngayLamViec) {
+      document.getElementById("btnNhanVien").click();
+      document.getElementById("thembtnNhanVien").style.display = "none";
+      document.querySelector("#form-2 input#maId").readOnly = true;
+
+      let getElement = document.querySelectorAll(
+        "#form-2 input,#form-2 select, #form-2 textarea"
+      );
+      for (let input of getElement) {
+        let { id } = input;
+        input.value = item[id];
+      }
+    } else if (item.tenCongTy) {
+      document.getElementById("btnKhachHang").click();
+      document.getElementById("thembtnKhachHang").style.display = "none";
+      document.querySelector("#form-3 input#maId").readOnly = true;
+      let getElement = document.querySelectorAll(
+        "#form-3 input,#form-3 select, #form-3 textarea"
+      );
+      for (let input of getElement) {
+        let { id } = input;
+        input.value = item[id];
+      }
+    }
+  }
+  chinhSuaThongTin(arrThongTin) {
+    let index = this.DanhSach.findIndex(
+      (item) => item.maId == arrThongTin.maId
+    );
+    if (index != -1) {
+      this.DanhSach[index] = arrThongTin;
+      this.renderGiaoDien();
+      this.luuLocal();
+    }
+  }
+  timKiemThongTin = (keyword) => {
+    let newkey = removeVietnameseTones(keyword).trim();
+    let arrTimKiem = this.DanhSach.filter((item) => {
+      let newFullName = removeVietnameseTones(item.fullName);
+      return newFullName
+        .toLowerCase()
+        .trim()
+        .includes(newkey.toLowerCase().trim());
+    });
+    if (arrTimKiem) {
+      this.DanhSach = arrTimKiem;
+      this.renderGiaoDien();
+    }
+  };
 }
