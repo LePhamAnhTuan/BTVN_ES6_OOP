@@ -28,3 +28,18 @@ document
   .addEventListener("click", (event) => {
     event.preventDefault();
   });
+//khach hang
+document.getElementById("btnKhachHang").addEventListener("click", () => {
+  document.getElementById("myModalKhachHang").style.display = "block";
+});
+document
+  .getElementById("btnCloseKhachHang")
+  .addEventListener("click", (event) => {
+    event.preventDefault();
+    document.getElementById("myModalKhachHang").style.display = "none";
+  });
+document
+  .getElementById("thembtnKhachHang")
+  .addEventListener("click", (event) => {
+    event.preventDefault();
+  });

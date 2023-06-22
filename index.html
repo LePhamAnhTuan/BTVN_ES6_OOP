@@ -226,7 +226,7 @@
     </div>
     <div id="myModalNhanVien" class="modal">
       <div class="main">
-        <form action="" method="POST" class="form" id="form-1">
+        <form action="" method="POST" class="form" id="form-2">
           <button id="btnCloseNhanVien" class="btn_close">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -326,6 +326,130 @@
           <div class="row g-1">
             <div class="col-6">
               <button id="thembtnNhanVien" class="form-submit">
+                Thêm Danh Sách
+              </button>
+            </div>
+            <div class="col-6">
+              <button class="form-submit">Cập Nhật</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="myModalKhachHang" class="modal">
+      <div class="main">
+        <form action="" method="POST" class="form" id="form-3">
+          <button id="btnCloseKhachHang" class="btn_close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3 class="heading">Đăng ký</h3>
+          <p class="desc"></p>
+
+          <div class="spacer"></div>
+
+          <div class="form_group">
+            <label for="maId" class="form-label">Mã ID</label>
+            <input
+              id="maId"
+              name="maId"
+              type="text"
+              placeholder="Mã ID"
+              class="form-control"
+              rules="required"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form_group">
+            <label for="fullName" class="form-label">Tên đầy đủ</label>
+            <input
+              id="fullName"
+              name="fullName"
+              type="text"
+              placeholder="Tên đầy đủ"
+              class="form-control"
+              rules="required|min:6"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form_group">
+            <label for="email" class="form-label">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="text"
+              placeholder="Email"
+              class="form-control"
+              rules="required|email"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form_group">
+            <label for="address" class="form-label">Địa Chỉ</label>
+            <input
+              id="address"
+              name="address"
+              type="text"
+              placeholder="Địa Chỉ"
+              class="form-control"
+              rules="required"
+            />
+            <span class="form-message"></span>
+          </div>
+
+          <div class="space">
+            <div class="row">
+              <div class="col-4">
+                <div class="form_group">
+                  <label for="tenCongTy" class="form-label">
+                    Tên công ty
+                  </label>
+                  <input
+                    id="tenCongTy"
+                    name="tenCongTy"
+                    type="te"
+                    placeholder="Tên công ty"
+                    class="form-control"
+                    rules="required"
+                  />
+                  <span class="form-message"></span>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form_group">
+                  <label for="bill" class="form-label"> Bill </label>
+                  <input
+                    id="bill"
+                    name="bill"
+                    type="te"
+                    placeholder="Bill"
+                    class="form-control"
+                    rules="required"
+                  />
+                  <span class="form-message"></span>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form_group">
+                  <label for="rate" class="form-label"> Rate </label>
+                  <input
+                    id="rate"
+                    name="rate"
+                    type="te"
+                    placeholder="Rate"
+                    class="form-control"
+                    rules="required"
+                  />
+                  <span class="form-message"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-1">
+            <div class="col-6">
+              <button id="thembtnKhachHang" class="form-submit">
                 Thêm Danh Sách
               </button>
             </div>
